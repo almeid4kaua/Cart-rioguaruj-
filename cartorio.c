@@ -103,7 +103,6 @@ int consultar() {
     system("pause");
 }
 
-
 int deletar()
 {
     char cpf[40];
@@ -140,12 +139,36 @@ int deletar()
     }
 }	
 	
+int sair() {
+    char confirmacao[5];
+    printf("Deseja sair do sistema? 'Digite Sim ou Não': ");
+    scanf("%s", confirmacao);
+
+    if (strcmp(confirmacao, "Sim") == 0 || strcmp(confirmacao, "sim") == 0) {
+        printf("Saindo do sistema...\n");
+        exit(0);  // Termina o programa
+    } else {
+        printf("Continuando no sistema!\n\n");
+        system("pause");
+    }
+}
 
 int main ()
 {  
+		setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
 		int opcao=0; //Definindo variáveis
 		int x=1;
-	
+		char senhadigitada[]="a";
+		int comparacao;
+		
+		printf("### Cartório do Guarujá ###\n\n");
+		printf("Login de adminstrador!\n\nDigite a sua senha:");
+		scanf("%s",senhadigitada);
+		
+		comparacao = strcmp(senhadigitada, "admin");
+		
+		if(comparacao == 0)
+		
 		for(x=1;x=1;)
 	{
 		
@@ -157,7 +180,8 @@ int main ()
 	  		printf("Escolha a opção desejada do menu:\n\n");
    	   		printf("\t1 - Registrar nomes\n");
 	   		printf("\t2 - Consultar nomes\n");
-	  		printf("\t3 - Deletar nomes\n\n"); 
+	  		printf("\t3 - Deletar nomes\n"); 
+	  		printf("\t4 - Sair do sistema\n\n");
 	  		printf("Opção: "); //Fim do menu
 	
 	  		scanf("%d", &opcao); //Armazenando a escolha do usuário
@@ -178,7 +202,11 @@ int main ()
 		deletar();//Chamada de funcoes
 		break;//Interrompe funcao
 		
-		
+		case 4:
+		sair();
+		break;
+		system("cls");
+				
 		default:
 		printf("Essa opção não está disponivel!\n");
 		system ("pause");
@@ -187,6 +215,9 @@ int main ()
 	   
 	   
 	}
+	
+	else
+		printf("Senha incorreta!");
 	
 }
 	   
