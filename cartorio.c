@@ -62,20 +62,20 @@ int registro() //Funcao responsavel por cadastrar os usuarios no sistema
 	}
 	
 int consultar() {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
 
-    char cpf[40];
-    char conteudo[200];
+    char cpf[40]; // Variavel para armazenar o CPF fornecido pelo usuario
+    char conteudo[200]; //Varivael para armazenar o conteudo do arquivo
     char *token; //String para o funcionamente do TOKEN
 
     printf("Digite o CPF a ser consultado: ");
-    scanf("%s", cpf);
+    scanf("%s", cpf); //Solicita o CPF para a consulta
 
     FILE *file;
-    file = fopen(cpf, "r");
+    file = fopen(cpf, "r"); //Abre o arquivo do CPF em leitura (funcao 'r')
 
-    if (file == NULL) {
-        printf("Arquivo não localizado!\n");
+    if (file == NULL) { //Se não houver arquivo, indica ao usuario
+        printf("Arquivo não localizado!\n"); //Mensagem exibida se o arquivo não for encontrado
         system("pause");
     }
 
@@ -103,41 +103,33 @@ int consultar() {
     system("pause");
 }
 
-int deletar()
-{
+int deletar() {
     char cpf[40];
-    char confirmacao[5]; //Variável para armazenar a confirmação do usuário
+    char confirmacao[5]; // Variável para armazenar a confirmação do usuário
 
     printf("Digite o CPF do usuário a ser deletado: ");
     scanf("%s", cpf);
 
     printf("Tem certeza que deseja deletar o usuário? (Digite 'Sim' para confirmar): ");
-    scanf("%s", confirmacao);
+    scanf("%s", confirmacao); //Buscando validação
 
-    if (strcmp(confirmacao, "Sim") == 0 || strcmp(confirmacao, "sim") == 0) //Verifica se a confirmação foi bem sucedida
-	
-	{ 
-        remove(cpf);
-
-        FILE *file;
-        file = fopen(cpf, "r");
-
-        if (file == NULL) 
-		{
-            printf("O usuário não se encontra no sistema!\n");
-            system("pause");
-        } 
-		else 
-		{
-            fclose(file);
+    if (strcmp(confirmacao, "Sim") == 0 || strcmp(confirmacao, "sim") == 0) { 
+        if (remove(cpf) == 0) {
+            // O arquivo foi removido com sucesso
             printf("Usuário deletado com sucesso!\n");
+            system("pause");
+        } else {
+            // Arquivo não encontrado
+            printf("Erro - Arquivo não encontrado.\n");
             system("pause");
         }
     } else {
+        // Operação cancelada pelo usuário
         printf("Operação cancelada.\n");
         system("pause");
     }
-}	
+}
+
 	
 int sair() {
     char confirmacao[5];
@@ -146,7 +138,7 @@ int sair() {
 
     if (strcmp(confirmacao, "Sim") == 0 || strcmp(confirmacao, "sim") == 0) {
         printf("Saindo do sistema...\n");
-        exit(0);  // Termina o programa
+        exit(0);  //Termina o programa
     } else {
         printf("Continuando no sistema!\n\n");
         system("pause");
@@ -159,13 +151,13 @@ int main ()
 		int opcao=0; //Definindo variáveis
 		int x=1;
 		char senhadigitada[]="a";
-		int comparacao;
+		int comparacao; //Definindo senha
 		
 		printf("### Cartório do Guarujá ###\n\n");
 		printf("Login de adminstrador!\n\nDigite a sua senha:");
 		scanf("%s",senhadigitada);
 		
-		comparacao = strcmp(senhadigitada, "admin");
+		comparacao = strcmp(senhadigitada, "admin"); //Validando a senha
 		
 		if(comparacao == 0)
 		
@@ -203,9 +195,9 @@ int main ()
 		break;//Interrompe funcao
 		
 		case 4:
-		sair();
-		break;
-		system("cls");
+		sair();//Chamada de funcoes
+		break;//Interrompe funcao
+		system("cls"); //Limpa tela
 				
 		default:
 		printf("Essa opção não está disponivel!\n");
@@ -217,7 +209,8 @@ int main ()
 	}
 	
 	else
-		printf("Senha incorreta!");
+		printf("Senha incorreta!"); //Mensagem de negacao de acesso ao sistema
+		
 	
 }
 	   
